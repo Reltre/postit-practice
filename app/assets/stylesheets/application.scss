@@ -33,7 +33,7 @@ div.nav_item {
 
 .label  {
   a, a:hover, a:focus {
-    color: #fff;
+    color: #fff; 
     text-decoration: none;
   }
 }
@@ -41,4 +41,14 @@ div.nav_item {
 div.comment_votes {
   padding: 10px;
 }
+
+
+.navbar .nav > li > div#category {
+  margin-right: 10px;
+}
+
+ul > hr {
+  margin: 0px 0px 0px 0px; 
+}
+
 

@@ -1,0 +1,16 @@
+<p class='pull-right'>
+  [<%= link_to 'Edit this post', edit_post_path(@post) %>]
+  <br>
+  [<%= link_to 'Add Category', new_category_path(@post) %>]
+</p>
+
+<p><%= render @post.categories %></p>
+<%= render 'shared/content_title', title: @post.title %>
+<div class="row">
+  <div class="span6 well">
+  <p><%= @post.description %></p>
+  </div>
+</div>
+<%= link_to 'Go back to all posts', posts_path %>
+
+
