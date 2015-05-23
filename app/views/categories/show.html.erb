@@ -1,12 +1,15 @@
+<% header = %>
+  <% link_to("All Posts" , posts_path) + 
+     " &raquo; #{@category.name}".html_safe 
+  %> 
+                        
+<%= render 'shared/content_title', 
+    title: "#{header}".html_safe 
+%>
 
-<% @category = Category.find(params[:id]) %>
-<% if @category.post_categories.empty? %>
-  <h4>There are no Posts under this Category</h4>
-<% else %>
-  <% @posts = %>
-  <% @category.post_categories.map do |post_cat| %>
-    <% next if post_cat.post_id == nil %>
-    <% Post.find(post_cat.post_id) %>
-  <% end %>
-    <%= render @posts %>  
+<% if @category.posts.empty? %>
+  <h4>There are no Posts under <%= "#{@category.name}" %>.</h4>
+<% else %>  
+  <%= render @category.posts %>  
 <% end %>
+

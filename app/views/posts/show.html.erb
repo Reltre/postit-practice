@@ -2,15 +2,33 @@
   [<%= link_to 'Edit this post', edit_post_path(@post) %>]
   <br>
   [<%= link_to 'Add Category', new_category_path(@post) %>]
+  <br>
+  [<%= link_to 'Go back to all posts', posts_path %>]
 </p>
 
 <p><%= render @post.categories %></p>
 <%= render 'shared/content_title', title: @post.title %>
+
 <div class="row">
   <div class="span6 well">
-  <p><%= @post.description %></p>
+    <p><%= @post.description %></p>
   </div>
 </div>
-<%= link_to 'Go back to all posts', posts_path %>
+<hr>
 
+<h5>Comments:</h5>
+<div class="offset1">
+  <%= render @post.comments %>
+  Leave a comment
+  <%= form_for [@post, @comment] do |f| %>
+    <div class='control-group'>
+      <%= f.text_area :body,  rows: 3, class: 'span4' %>  
+      <br>
+      <span id="comment_submit"> 
+        <%= f.submit 'Add Comment', class: 'btn btn-small btn-primary' %>
+      </span>
+    </div>
 
+  <% end %>
+</div>
+  

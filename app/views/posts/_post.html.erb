@@ -1,14 +1,14 @@
 <div class="row">
   <div class="span6 well">
     <%= render post.categories %>
-    <h4><%= link_to post.title, "http://#{post.url}" %></h4>
+    <h4><%= link_to post.title, format_url(post) %></h4>
     <p>
       <%= post.description %>
     </p>
     <p>
       <span class="quiet">Posted by</span> 
       <%= post.creator.username %> 
-      <small>at <%= post.created_at %></small>
+      <small><%= user_friendly_date(post) %> ago</small>
     </p>
     <%= link_to "#{post.comments.size} comments",
         post_path(post) %>  

@@ -7,7 +7,7 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: {minimum: 5}
   validates :url, presence: true, uniqueness: true
   validates :description, presence: true
-
+  validates :category_ids, :presence => {:message => 'At least 1 category must be selected'}
   #accepts_nested_attributes_for :post_category,
    # :allow_destroy => true
 end
