@@ -19,7 +19,6 @@
           <% end %>
         </li>
       </ul>
-      
     </div>
   </li>
   <li>
@@ -27,5 +26,23 @@
       <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
     </div>
   </li>
+  <li>
+    <div class='nav-item' >
+      <%= link_to 'Register', register_path, class: 'btn btn-small' %>
+    </div>
+  </li>
+  <% if logged_in? %>
+    <li>
+      <div class='nav-item'>
+        <%= link_to 'Log Out', logout_path, class: 'btn btn-small' %>
+      </div>
+    </li>
+  <% else %>
+    <li>
+      <div class='nav-item'>
+        <%= link_to 'Log in', login_path, class: 'btn btn-small' %>
+      </div>
+    </li>
+  <% end %>
 </ul>
 

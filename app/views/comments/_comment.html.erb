@@ -3,6 +3,6 @@
     <p><em>"<%= comment.body %>"</em></p>
     <span class="quiet">by</span> 
     <%= comment.creator.username %> 
-    <small>at <%= comment.created_at %></small>
+    <small><%= user_friendly_date(comment.created_at) %> ago</small>
   </div>
 </div>
