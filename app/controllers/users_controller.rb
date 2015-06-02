@@ -1,17 +1,25 @@
 class UsersController < ApplicationController
   def new
-  #@user = User.new
+    @user = User.new
   end
 
   def create
-    user = User.new(username: params[:username], password: params[:password])
-    if user.save
+    @user = User.new(user_params)
+    if @user.save
       flash[:notice] = "You're now registered."
-      redirect_to root_path
+      log_in_user(@user)
     else
-      flash[:error] = "You're username or password was not valid."
-      redirect_to register_path
+      render :new
     end
+  end
+
+  def edit
+  end
+
+  def show
+  end
+
+  def update
   end
 
   private

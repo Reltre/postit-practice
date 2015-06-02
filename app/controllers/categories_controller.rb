@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :require_user, only: [:new, :create]
+
   def create
     @category = Category.new(category_params)
     if @category.save
@@ -6,9 +8,7 @@ class CategoriesController < ApplicationController
       redirect_to root_path
     else
       render 'categories/new'
-    end
-    
-    
+    end  
   end
 
   def new
@@ -29,20 +29,20 @@ class CategoriesController < ApplicationController
 
   end
 
-  def add_category
-    @category = Category.new(category_params)
-    @post = Post.find(params[:post_id])
-    post_category = PostCategory.new(category_id: @category.id, 
-                                     post_id: @post.id)
-    @category.post_categories << post_category
-    @post.post_categories << post_category
+  # def add_category
+  #   @category = Category.new(category_params)
+  #   @post = Post.find(params[:post_id])
+  #   post_category = PostCategory.new(category_id: @category.id, 
+  #                                    post_id: @post.id)
+  #   @category.post_categories << post_category
+  #   @post.post_categories << post_category
 
-    unless @category.save
-      render '/new'
-    end
+  #   unless @category.save
+  #     render '/new'
+  #   end
     
-    redirect_to post_path(@post)
-  end
+  #   redirect_to post_path(@post)
+  # end
 
   private
 
