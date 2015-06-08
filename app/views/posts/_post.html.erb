@@ -1,4 +1,19 @@
 <div class="row">
+  <div class="span0 well text-center" id="vote_p">
+    <% if logged_in? %>
+      <%= link_to(vote_post_path(post, vote: true),method: 'post') do %>
+        <i class="icon-arrow-up"></i>
+      <% end %>
+    <br> 
+    <% end %> 
+    <%= "#{post.total_votes} votes" %>
+    <br>
+    <% if logged_in? %>
+      <%= link_to(vote_post_path(post, vote: false),method: 'post') do %>
+        <i class="icon-arrow-down" id='down_arrow'></i>
+      <% end %>
+    <% end %>
+  </div>
   <div class="span6 well">
     <%= render post.categories %>
     <h4><%= link_to post.title, fix_url(post.url) %></h4>
@@ -7,7 +22,7 @@
     </p>
     <p>
       <span class="quiet">Posted by</span> 
-      <%= post.creator.username %> 
+      <%= link_to post.creator.username, user_path(post.creator) %> 
       <small><%= user_friendly_date(post.created_at) %> ago</small>
     </p>
     <%= link_to "#{post.comments.size} comments",

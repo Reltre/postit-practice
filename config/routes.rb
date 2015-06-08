@@ -2,8 +2,10 @@ PostitTemplate::Application.routes.draw do
   root to: 'posts#index'
 
   resources 'posts', except: [:destroy] do
-    resources 'comments', only: [:create]
-    post 'categories/add', to: 'categories#add_category'
+    post 'vote', on:  :member 
+    resources 'comments', only: [:create] do
+      post 'vote', on:  :member 
+    end
   end
 
   resources 'categories', only: [:new, :create, :show]
@@ -12,6 +14,7 @@ PostitTemplate::Application.routes.draw do
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-
+  
+  
   resources :users, only: [:create, :show, :edit, :update]
 end

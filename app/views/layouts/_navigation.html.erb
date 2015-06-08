@@ -5,7 +5,7 @@
     <div class='nav-item btn-group' id="category">
       <a class="btn dropdown-toggle" data-toggle='dropdown' href='#'> 
         Categories
-        <span class='caret'></span> 
+        <i class='caret'></i> 
       </a>
       <ul class='dropdown-menu'>
         <% Category.all.each do |category| %> 
@@ -23,11 +23,6 @@
       </ul>
     </div>
   </li>
-  <li>
-    <div class='nav-item' >
-      <%= link_to 'Register', register_path, class: 'btn btn-small' %>
-    </div>
-  </li>
   <% if logged_in? %>
     <li>
       <div class='nav-item' >
@@ -35,11 +30,39 @@
       </div>
     </li>
     <li>
-      <div class='nav-item'>
-        <%= link_to 'Log Out', logout_path, class: 'btn btn-small' %>
+      <div class="btn-group nav-item">
+        <%= link_to('', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+          <%= current_user.username %>
+          <i class='caret'></i>
+        <% end %>
+        <ul class='dropdown-menu'>
+          <li>
+            <%= link_to edit_user_path(current_user) do %>
+              <i class="icon-pencil"></i>
+              edit profile
+            <% end %>
+          </li>
+          <li>
+            <%= link_to user_path(current_user) do %>
+              <i class="icon-user"></i>
+              view profile
+            <% end %>
+          </li>
+          <li>
+            <%= link_to logout_path do %>
+              <i class="icon-circle-arrow-left"></i>
+              log out
+            <% end %>
+          </li>
+        </ul>
       </div>
     </li>
   <% else %>
+    <li>
+      <div class='nav-item' >
+        <%= link_to 'Register', register_path, class: 'btn btn-small' %>
+      </div>
+    </li>
     <li>
       <div class='nav-item'>
         <%= link_to 'Log in', login_path, class: 'btn btn-small' %>
@@ -47,4 +70,5 @@
     </li>
   <% end %>
 </ul>
+
 

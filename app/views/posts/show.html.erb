@@ -16,11 +16,11 @@
 <hr>
 
 <h5>Comments:</h5>
-<div class="offset1">
+<div>
   <%= render @post.comments %>
 </div>
 <hr>
-<div class="offset1">
+<div>
 
   <% if logged_in? %>
     Leave a comment
@@ -34,7 +34,7 @@
       </div>
     <% end %>
   <% else %>
-    <div class="well span6 text-center">
+    <div class="well span6 text-center offset2">
       <b>Please login or register to comment on this post.</b>
     </div>
   <% end %>

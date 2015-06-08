@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :obtain_user, only: [:show, :edit, :update]
+  before_action :require_same_user, only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -7,7 +10,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "You're now registered."
-      log_in_user(@user)
+      session[:user_id] = @user.id
+      redirect_to :root
     else
       render :new
     end
@@ -20,9 +24,26 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      flash[:notice] = "Your profile has been updated."
+    else
+      render :edit
+    end
   end
 
   private
+
+  def require_same_user
+    if current_user != @user
+      flash[:error] = "You do not have authorization to do that."
+      redirect_to root_path
+    end
+  end
+
+  def obtain_user
+    #binding.pry
+    @user = User.find(params[:id])
+  end 
 
   def user_params
     params.require(:user).permit(:username, :password)

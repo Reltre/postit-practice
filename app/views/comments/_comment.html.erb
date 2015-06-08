@@ -1,8 +1,28 @@
+<% user_page ||= false %>
 <div class="row">
-  <div class="span5 well">
-    <p><em>"<%= comment.body %>"</em></p>
+  <div class="span0 well text-center">
+    <% if logged_in? %>
+      <%= link_to(vote_post_comment_path(comment.post, comment, vote: true), method: 'post') do %>
+        <i class="icon-arrow-up"></i>
+      <% end %>
+    <% end %>
+    <br>  
+    <%= "#{comment.total_votes} votes" %>
+    <br>
+    <% if logged_in? %>
+      <%= link_to(vote_post_comment_path(comment.post, comment, vote: false), method: 'post') do %>
+       <i class="icon-arrow-down" id='down_arrow'></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="span8 well well-large">
+    <p><em>"<%= comment.body %>"</em> 
+    <% if user_page %>
+      on <%= link_to(comment.post.title, post_path(comment.post)) %>
+    <% end %>
+    </p>
     <span class="quiet">by</span> 
-    <%= comment.creator.username %> 
+    <%= link_to(comment.creator.username, user_path(comment.creator)) %> 
     <small><%= user_friendly_date(comment.created_at) %> ago</small>
   </div>
 </div>
