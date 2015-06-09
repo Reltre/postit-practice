@@ -1,7 +1,7 @@
 module ApplicationHelper
   def fix_url(url)
+    url.sub!(/https/,'http')
     url = url.starts_with?("http://") ? url : "http://#{url}" 
-    url = url.stars_with?("https://") ? "http://#{url}" : url 
   end
 
   def user_friendly_date(datetime)
