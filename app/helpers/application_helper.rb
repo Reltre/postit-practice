@@ -1,6 +1,6 @@
 module ApplicationHelper
   def fix_url(url)
-    url.sub!(/https/,'http')
+    url.sub!(/https:\/\//,'http://')
     url = url.starts_with?("http://") ? url : "http://#{url}" 
   end
 
