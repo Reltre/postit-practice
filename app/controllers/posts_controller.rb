@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :obtain_post, only: [:show, :edit, :update, :vote]
-  before_action :require_user, except:[:show, :index] 
+  before_action :require_user, except:[:show, :index, :vote] 
+  before_action :require_same_user, only:[:edit, :update]
 
   def index
     @posts = Post.all.sort_by {|post| post.total_votes}.reverse
@@ -38,16 +39,27 @@ class PostsController < ApplicationController
   end
 
   def vote
-    vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
-    if vote.valid?
-      flash[:notice] = "Your vote was counted."
+    if current_user.nil?
+      flash[:error] = "You need to be logged in to vote"
     else
-      flash[:error] = "You can only vote on a post once."
+      vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+      if vote.valid?
+        flash[:notice] = "Your vote was counted."
+      else
+        flash[:error] = "You can only vote on a post once."
+      end
     end
     redirect_to :back
   end
 
   private 
+
+  def require_same_user
+    if current_user != @post.creator
+      flash[:error] = "You do not have authorization to do that."
+      redirect_to :back
+    end
+  end
 
   def obtain_post
     @post = Post.find(params[:id])

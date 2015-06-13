@@ -4,7 +4,7 @@
   <li><%= link_to "Postit!", root_path, class: 'brand' %></li>  
   <li>
     <div class='nav-item btn-group' id="category">
-      <a class="btn dropdown-toggle" data-toggle='dropdown' href='#'> 
+      <a class="btn dropdown-toggle" data-toggle='dropdown'> 
         Categories
         <i class='caret'></i> 
       </a>
@@ -27,12 +27,12 @@
   <% if logged_in? %>
     <li>
       <div class='nav-item' >
-        <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
+        <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small quiet' %>
       </div>
     </li>
     <li>
       <div class="btn-group nav-item">
-        <%= link_to('', class: 'btn btn-small dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+        <%= link_to('', class: 'btn btn-small dropdown-toggle quiet', 'data-toggle' => 'dropdown') do %>
           <%= current_user.username %>
           <i class='caret'></i>
         <% end %>
