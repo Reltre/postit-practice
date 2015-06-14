@@ -1,0 +1,10 @@
+.nav-tabs > .active >  {
+  a, a:hover, a:focus {
+    background-color :#575a65;
+    color: #FEFEFE;
+  }
+}
+
+.nav-tabs a:hover:not(:active), .nav-tabs li > a:active, .btn-group.open .btn.dropdown-toggle {
+  background :#575a65;
+}

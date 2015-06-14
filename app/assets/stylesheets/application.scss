@@ -23,10 +23,13 @@ body {
   background-color: #575a65;
 }
 
-.navbar .nav > li > a.brand, .brand a:hover {
+
+.navbar .nav > li > , .navbar .nav .brand  {
+  a, a:hover {
   padding-left: 0px;
   text-shadow: 0 1px 0 #ababab;
   color: #777777;
+  }
 }
 
 .quiet {
@@ -37,56 +40,37 @@ body {
   color: #DBDBDB
 }
 
-.nav-item > a, .nav-item > a:hover, .nav-item > a:active, .nav-item > a:visited {
+.norm-nav > a, .norm-nav > a:hover, .norm-nav > a:active, .norm-nav > a:visited {
   margin-right: 10px;
   background: #575a65;
   text-shadow: 0 1px 1px rgba(255, 255, 255, 0.0);
   color:  rgba(255, 255, 255, 0.5);
 }
 
-.label, .badge  {
-  a, a:hover, a:focus {
-    text-decoration: none;
-  }
+.new-post, .new-post:hover {
+  background: #5bb65b;
+  margin-right: 10px;
 }
-
-
-span.badge {
-  background: #0088cc;
-  a{
-    color: white;
-  }
-}
-
 
 div.comment_votes {
   padding: 10px;
 }
-
-/*
-a:active > i.caret, a:hover > i.caret {
-  color: #0088cc;  
-  text-decoration: none;
-  border-top-color: #0088cc;
-  border-bottom-color: #0088cc;
-}
-*/
 
 a, a:hover {
   color: #47B247;
   text-decoration: none;
 }
 
-
 hr {
   border-color: #47B247;
 }
 
-span#comment_submit {
-  margin-left: 200px
+.dropdown-menu .divider {
+  background: #47B247;
+  border-bottom: 1px solid #47B247;
 }
 
-.span6, .well {
+.well {
   background-color: #4B4B4B;
 }
 
@@ -94,12 +78,7 @@ i#down_arrow {
   margin-right: 2px;
 }
 
-p, #votes, .dl-horizontal {
-  color: #FEFEFE;
-}
-
-.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus {
-  background-color :#575a65;
+p, .dl-horizontal, #votes, #leave-comment {
   color: #FEFEFE;
 }
 
@@ -108,24 +87,32 @@ p, #votes, .dl-horizontal {
   border-color: #ADD6FF;
 }
 
-.btn-group.open .btn.dropdown-toggle {
-  background: #575a65;
+.dropdown-menu, .dropdown-menu > li > a {
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #575a65;    
 }
 
-.dropdown-menu, .dropdown-menu > li > a {
-
-  color: rgba(255, 255, 255, 0.5);
-  background-color: #575a65;
-    
-  }
-
-
-
+.nav .dropdown-toggle:hover .caret {
+  border-top-color: #0088cc;
+  border-bottom-color: #0088cc;
+}
 
 a:hover, a:visted, a:selected {
   color: #47B247
 }
 
-span.caret:hover{
-  color:red;
+#user_activity_title, #login_reminder, #comments_title  {
+  color: #0088cc;
+}
+
+#user_activity_title,  #comments_title {
+  text-shadow: 1px 1px 0 black;
+}
+
+input[type="submit"], input[type="submit"]:hover{
+  background: #0044cc; 
+}
+
+label {
+  color: rgba(255, 255, 255, 0.5)
 }
