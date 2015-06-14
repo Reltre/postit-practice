@@ -14,10 +14,11 @@
     <% end %>
   </div>
   <div class="span8 well well-large">
-    <p><em>"<%= comment.body %>"</em> 
-    <% if user_page %>
-      on <%= link_to(comment.post.title, post_path(comment.post)) %>
-    <% end %>
+    <p>
+      <em>"<%= comment.body %>"</em> 
+      <% if user_page %>
+        on <%= link_to(comment.post.title, post_path(comment.post)) %>
+      <% end %>
     </p>
     <span class="quiet">by</span> 
     <%= link_to(comment.creator.username, user_path(comment.creator)) %> 

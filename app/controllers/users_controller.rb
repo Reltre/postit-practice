@@ -17,11 +17,9 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
-  def show
-  end
+  def show; end
 
   def update
     if @user.update(user_params)
@@ -41,7 +39,6 @@ class UsersController < ApplicationController
   end
 
   def obtain_user
-    #binding.pry
     @user = User.find(params[:id])
   end 
 

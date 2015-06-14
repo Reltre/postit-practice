@@ -5,7 +5,6 @@ class Comment < ActiveRecord::Base
 
   validates :body, presence: true, length: {minimum: 1}
 
-
   def total_votes
     up_votes - down_votes
   end

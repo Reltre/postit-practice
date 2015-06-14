@@ -6,5 +6,5 @@ class User < ActiveRecord::Base
   has_many :votes
 
   validates :username, presence: true, uniqueness: true
-  validates :password, presence: true, length: { in: 7..16 }, on: :create 
+  validates :password, presence: true, length: { in: 7..18 }, on: :create 
 end

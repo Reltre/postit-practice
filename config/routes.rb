@@ -7,14 +7,10 @@ PostitTemplate::Application.routes.draw do
       post 'vote', on:  :member 
     end
   end
-
-  resources 'categories', only: [:new, :create, :show]
-
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
-  
-  
-  resources :users, only: [:create, :show, :edit, :update]
+  resources 'users', only: [:create, :show, :edit, :update]
+  resources 'categories', only: [:new, :create, :show]
 end

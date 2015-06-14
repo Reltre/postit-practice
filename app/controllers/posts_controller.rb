@@ -30,7 +30,6 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      #binding.pry
       flash[:notice] = "Your post has been updated."
       redirect_to post_path(@post)
     else

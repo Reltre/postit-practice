@@ -3,18 +3,14 @@
     [<%= link_to 'Edit this post', edit_post_path(@post) %>]
   </p>
 <% end %>
-
-
 <p><%= render @post.categories %></p>
 <%= render 'shared/content_title', title: @post.title %>
-
 <div class="row">
   <div class="span6 well">
     <p><%= @post.description %></p>
   </div>
 </div>
 <hr>
-
 <h5 id="comments_title">Comments:</h5>
 <div>
   <%= render @post.comments %>
@@ -26,15 +22,12 @@
     <%= form_for [@post, @comment] do |f| %>
       <div class='control-group offset1'>
         <%= f.text_area :body,  rows: 5, class: 'span8' %>  
-        
-         
         <%= f.submit 'Add Comment', class: 'btn btn-medium btn-primary', id:'comment-btn' %>
-        
       </div>
     <% end %>
   <% else %>
     <div class="well span6 text-center offset2" id="login_reminder">
-      <b>Please login or register to comment on this post.</b>
+      <b>Please login or register to comment on this post</b>
     </div>
   <% end %>
 </div>

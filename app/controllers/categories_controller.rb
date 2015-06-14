@@ -15,34 +15,15 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def show
     @category = Category.find(params[:id])
   end
 
-  def update
-  end
+  def update; end
 
-  def destroy 
-
-  end
-
-  # def add_category
-  #   @category = Category.new(category_params)
-  #   @post = Post.find(params[:post_id])
-  #   post_category = PostCategory.new(category_id: @category.id, 
-  #                                    post_id: @post.id)
-  #   @category.post_categories << post_category
-  #   @post.post_categories << post_category
-
-  #   unless @category.save
-  #     render '/new'
-  #   end
-    
-  #   redirect_to post_path(@post)
-  # end
+  def destroy; end
 
   private
 

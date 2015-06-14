@@ -30,7 +30,8 @@
     </li>
     <li>
       <div class="btn-group nav-item norm-nav">
-        <%= link_to('', class: 'btn btn-small dropdown-toggle quiet', 'data-toggle' => 'dropdown') do %>
+        <%= link_to('', class: 'btn btn-small dropdown-toggle quiet',
+                                              'data-toggle' => 'dropdown') do %>
           <%= current_user.username %>
           <i class='caret'></i>
         <% end %>
