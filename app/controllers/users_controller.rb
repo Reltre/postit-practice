@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "You're now registered."
-      session[:user_id] = @user.id
+      log_in(@user)
       redirect_to :root
     else
       render :new

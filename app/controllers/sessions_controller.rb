@@ -3,7 +3,14 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:username])
-    log_in_user(user)
+    if user && user.authenticate(params[:password])  
+      log_in_user(user)
+      flash[:notice] = "Welcome #{user.username}"
+      redirect_to root_path
+    else
+      flash.now[:error] = "You're username or password was not valid."
+      render :new
+    end
   end
 
   def destroy

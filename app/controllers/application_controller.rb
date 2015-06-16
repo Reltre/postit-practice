@@ -20,13 +20,6 @@ class ApplicationController < ActionController::Base
   end
 
   def log_in_user(user)
-    if user && user.authenticate(params[:password])  
-      session[:user_id] = user.id
-      flash[:notice] = "Welcome #{user.username}"
-      redirect_to root_path
-    else
-      flash.now[:error] = "You're username or password was not valid."
-      render :new
-    end
+    session[:user_id] = user.id  
   end
 end
