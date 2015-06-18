@@ -14,19 +14,18 @@ class CommentsController < ApplicationController
   end
 
   def vote
-    if current_user.nil?
-      flash[:error] = "You need to be logged in to vote"
+    @comment = Comment.find(params[:id])
+    vote = Vote.create(voteable: @comment,
+                       creator: current_user,
+                       vote: params[:vote])
+    if vote.valid?
+     flash.now[:notice] = "Your vote was counted."
     else
-      @comment= Comment.find(params[:id])
-      vote = Vote.create(voteable: @comment,
-                         creator: current_user,
-                         vote: params[:vote])
-      if vote.valid?
-        flash[:notice] = "Your vote was counted."
-      else
-        flash[:error] = "You can only vote on that comment once."
-      end
+     flash.now[:error] = "You can only vote on that comment once."
     end
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
 end
