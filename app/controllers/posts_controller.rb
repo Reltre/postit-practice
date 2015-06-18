@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :obtain_post, only: [:show, :edit, :update, :vote]
-  before_action :require_user, except:[:show, :index, :vote] 
+  before_action :require_user, except:[:show, :index, :vote]
   before_action :require_same_user, only:[:edit, :update]
 
   def index
@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new  
+    @comment = Comment.new
   end
 
   def new
@@ -38,20 +38,20 @@ class PostsController < ApplicationController
   end
 
   def vote
-    if current_user.nil?
-      flash[:error] = "You need to be logged in to vote"
+    vote = Vote.create(voteable: @post,
+                       creator: current_user, vote: params[:vote])
+    if vote.valid?
+     flash.now[:notice] = "Your vote was counted."
     else
-      vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
-      if vote.valid?
-        flash[:notice] = "Your vote was counted."
-      else
-        flash[:error] = "You can only vote on a post once."
-      end
+     flash.now[:error] = "You can only vote on a post once."
     end
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
 
-  private 
+  private
 
   def require_same_user
     if current_user != @post.creator
@@ -62,7 +62,7 @@ class PostsController < ApplicationController
 
   def obtain_post
     @post = Post.find(params[:id])
-  end 
+  end
 
   def post_params
     params.require(:post).permit(:title, :url, :description, category_ids: [])

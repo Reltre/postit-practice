@@ -1,0 +1,2 @@
+$('.container .row .span12').prepend('<%= j render "layouts/messages.html.erb" %>')
+$('#votes_<%= @post.id %>_post').html('<%= @post.total_votes %> votes');

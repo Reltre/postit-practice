@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "You're now registered."
-      log_in(@user)
+      log_in_user(@user)
       redirect_to :root
     else
       render :new
@@ -40,7 +40,7 @@ class UsersController < ApplicationController
 
   def obtain_user
     @user = User.find(params[:id])
-  end 
+  end
 
   def user_params
     params.require(:user).permit(:username, :password)
