@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :require_user
 
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(params.require(:comment).permit(:body))
@@ -14,6 +15,7 @@ class CommentsController < ApplicationController
   end
 
   def vote
+<<<<<<< HEAD
     if current_user.nil?
       flash.now[:error] = "You need to be logged in to vote"
     else
@@ -26,7 +28,20 @@ class CommentsController < ApplicationController
       else
         flash.now[:error] = "You can only vote on that comment once."
       end
+=======
+    @comment = Comment.find(params[:id])
+    vote = Vote.create(voteable: @comment,
+                       creator: current_user,
+                       vote: params[:vote])
+    if vote.valid?
+     flash[:notice] = "Your vote was counted."
+    else
+     flash[:error] = "You can only vote on that comment once."
     end
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+>>>>>>> ajax-postit
+    end
   end
 end

@@ -2,9 +2,9 @@ PostitTemplate::Application.routes.draw do
   root to: 'posts#index'
 
   resources 'posts', except: [:destroy] do
-    post 'vote', on:  :member 
+    post 'vote', on:  :member
     resources 'comments', only: [:create] do
-      post 'vote', on:  :member 
+      post 'vote', on:  :member
     end
   end
   get '/register', to: 'users#new'

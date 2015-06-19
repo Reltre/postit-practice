@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
   before_action :obtain_post, only: [:show, :edit, :update, :vote]
-  before_action :require_user, except:[:show, :index, :vote]
-  before_action :require_same_user, only:[:edit, :update]
+  before_action :require_user, except: [:show, :index]
+  before_action :require_same_user, only: [:edit, :update]
+
+
 
   def index
     @posts = Post.all.sort_by {|post| post.total_votes}.reverse
