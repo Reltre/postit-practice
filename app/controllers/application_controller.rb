@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless logged_in?
-      flash.now[:error] = "You must be logged in to do that."
+      flash[:error] = "You must be logged in to do that."
       render js: "window.location.reload();"
     end
   end
