@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :require_user
 
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(params.require(:comment).permit(:body))
@@ -19,9 +20,9 @@ class CommentsController < ApplicationController
                        creator: current_user,
                        vote: params[:vote])
     if vote.valid?
-     flash.now[:notice] = "Your vote was counted."
+     flash[:notice] = "Your vote was counted."
     else
-     flash.now[:error] = "You can only vote on that comment once."
+     flash[:error] = "You can only vote on that comment once."
     end
     respond_to do |format|
       format.html { redirect_to :back }
