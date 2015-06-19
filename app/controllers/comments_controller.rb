@@ -15,20 +15,6 @@ class CommentsController < ApplicationController
   end
 
   def vote
-<<<<<<< HEAD
-    if current_user.nil?
-      flash.now[:error] = "You need to be logged in to vote"
-    else
-      @comment= Comment.find(params[:id])
-      vote = Vote.create(voteable: @comment,
-                         creator: current_user,
-                         vote: params[:vote])
-      if vote.valid?
-        flash.now[:notice] = "Your vote was counted."
-      else
-        flash.now[:error] = "You can only vote on that comment once."
-      end
-=======
     @comment = Comment.find(params[:id])
     vote = Vote.create(voteable: @comment,
                        creator: current_user,
@@ -41,7 +27,6 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to :back }
       format.js
->>>>>>> ajax-postit
     end
   end
 end
