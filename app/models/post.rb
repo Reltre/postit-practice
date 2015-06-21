@@ -8,6 +8,7 @@ class Post < ActiveRecord::Base
 
   validates :title, presence: true, length: {minimum: 5}
   validates :url, presence: true, uniqueness: true
+
   validates :description, presence: true
   validates :category_ids, :presence => {:message => 'At least 1 category must be selected'}
 
@@ -21,5 +22,13 @@ class Post < ActiveRecord::Base
 
   def down_votes
     self.votes.where(vote: false).size
+  end
+
+  def generate_slug
+    title.parameterize
+  end
+
+  def to_param
+    slug
   end
 end

@@ -1,4 +1,4 @@
-<% if logged_in? && is_same_user? %>
+<% if logged_in? && is_same_user?(@post) %>
   <p class='pull-right'>
     [<%= link_to 'Edit this post', edit_post_path(@post) %>]
   </p>
@@ -21,7 +21,7 @@
     <span id="leave-comment" class="offset1">Leave a comment</span>
     <%= form_for [@post, @comment] do |f| %>
       <div class='control-group offset1'>
-        <%= f.text_area :body,  rows: 5, class: 'span8' %>  
+        <%= f.text_area :body,  rows: 5, class: 'span8' %>
         <%= f.submit 'Add Comment', class: 'btn btn-medium btn-primary', id:'comment-btn' %>
       </div>
     <% end %>
@@ -31,4 +31,3 @@
     </div>
   <% end %>
 </div>
-  

@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   before_action :require_same_user, only: [:edit, :update]
 
 
-
   def index
     @posts = Post.all.sort_by {|post| post.total_votes}.reverse
   end
@@ -20,6 +19,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.creator = current_user
+    @post.slug = @post.generate_slug
     if @post.save
       flash[:notice] = "Your post has been saved."
       redirect_to posts_path
@@ -33,6 +33,7 @@ class PostsController < ApplicationController
   def update
     if @post.update(post_params)
       flash[:notice] = "Your post has been updated."
+      @post.update_attribute(:slug, @post.generate_slug)
       redirect_to post_path(@post)
     else
       render :edit
@@ -63,7 +64,7 @@ class PostsController < ApplicationController
   end
 
   def obtain_post
-    @post = Post.find(params[:id])
+    @post = Post.find_by_slug(params[:id])
   end
 
   def post_params
