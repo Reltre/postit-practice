@@ -13,7 +13,7 @@
 <hr>
 <h5 id="comments_title">Comments:</h5>
 <div>
-  <%= render @post.comments %>
+  <%= render @post.reload.comments %>
 </div>
 <br>
 <div class="row">

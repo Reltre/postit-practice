@@ -12,6 +12,8 @@ class Post < ActiveRecord::Base
   validates :description, presence: true
   validates :category_ids, :presence => {:message => 'At least 1 category must be selected'}
 
+  before_save :generate_slug
+
   def total_votes
     up_votes - down_votes
   end
@@ -25,7 +27,7 @@ class Post < ActiveRecord::Base
   end
 
   def generate_slug
-    title.parameterize
+    self.slug = title.parameterize
   end
 
   def to_param
