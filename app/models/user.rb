@@ -6,5 +6,15 @@ class User < ActiveRecord::Base
   has_many :votes
 
   validates :username, presence: true, uniqueness: true
-  validates :password, presence: true, length: { in: 7..18 }, on: :create 
+  validates :password, presence: true, length: { in: 7..18 }, on: :create
+
+  before_save :generate_slug
+
+  def generate_slug
+    self.slug = username.parameterize
+  end
+
+  def to_param
+    slug
+  end
 end

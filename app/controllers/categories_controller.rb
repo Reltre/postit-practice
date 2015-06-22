@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
       redirect_to root_path
     else
       render 'categories/new'
-    end  
+    end
   end
 
   def new
@@ -18,7 +18,7 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def show
-    @category = Category.find(params[:id])
+    @category = Category.find_by_slug(params[:id])
   end
 
   def update; end
