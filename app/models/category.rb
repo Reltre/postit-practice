@@ -7,7 +7,10 @@ class Category < ActiveRecord::Base
   before_save :generate_slug
 
   def generate_slug
-    self.slug = name.parameterize
+    the_slug = name.parameterize
+    self.slug = slug.blank? ?
+                "#{the_slug}-#{(Category.where(slug: the_slug).size + 1)}" :
+                the_slug 
   end
 
   def to_param

@@ -27,7 +27,8 @@ class Post < ActiveRecord::Base
   end
 
   def generate_slug
-    self.slug = title.parameterize
+    #the_slug = title.parameterize
+    self.slug = title.parameteriz
   end
 
   def to_param
