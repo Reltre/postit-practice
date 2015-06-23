@@ -11,7 +11,10 @@ class User < ActiveRecord::Base
   before_save :generate_slug
 
   def generate_slug
-    self.slug = username.parameterize
+    a_slug = username.parameterize
+    return slug if slug != nil && slug[0..-3] == a_slug
+    slug_copies = User.where("slug LIKE :prefix",prefix: "#{a_slug}%").size
+    self.slug = slug_copies.zero? ? a_slug : "#{a_slug}-#{slug_copies + 1}"
   end
 
   def to_param
