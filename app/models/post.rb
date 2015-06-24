@@ -30,7 +30,6 @@ class Post < ActiveRecord::Base
     a_slug = title.parameterize
     return slug if slug != nil && slug[0..-3] == a_slug
     slug_copies = Post.where("slug LIKE :prefix",prefix: "#{a_slug}%").size
-    binding.pry
     self.slug = slug_copies.zero? ? a_slug : "#{a_slug}-#{slug_copies + 1}"
   end
 
