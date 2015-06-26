@@ -1,3 +1,7 @@
+$error = $('.container .row .span12 .alert');
+if (jQuery.contains(document, $error[0])) {
+    $error.remove();
+}
 $('.container .row .span12').prepend('<%= j render "layouts/messages.html.erb" %>')
 $('#votes_<%= @comment.id %>_comment').html('<%= @comment.total_votes %> votes');
 <% flash.discard %>
