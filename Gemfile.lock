@@ -1,8 +1,3 @@
-PATH
-  remote: /Users/PoliceBox/Development/ruby/rails/my_gems/sluggable-gem
-  specs:
-    sluggable_jun (0.0.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -130,6 +125,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     slop (3.6.0)
+    sluggable_jun (0.0.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -167,7 +163,7 @@ DEPENDENCIES
   rails_12factor
   sass-rails (~> 4.0.0)
   sdoc
-  sluggable_jun!
+  sluggable_jun
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
