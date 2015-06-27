@@ -6,4 +6,6 @@ class Category < ActiveRecord::Base
 
   validates :name, presence: true, length: {minimum: 2}, uniqueness: true
 
+  sluggable_column :name
+  
 end

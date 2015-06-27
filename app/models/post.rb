@@ -16,4 +16,6 @@ class Post < ActiveRecord::Base
   validates :category_ids,
    :presence => {:message => 'At least 1 category must be selected'}
 
+  sluggable_column :title 
+
 end
