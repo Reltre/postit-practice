@@ -1,3 +1,6 @@
+#This is being kept for future testing and improvements, it is not being
+#used in this program at the moment.
+
 module Sluggable
   extend ActiveSupport::Concern
 
