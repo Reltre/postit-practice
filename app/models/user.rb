@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  include Sluggable
+  include SluggableJun
 
   has_secure_password validations: false
 
@@ -11,5 +11,5 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { in: 7..18 }, on: :create
 
   sluggable_column :username
-  
+
 end

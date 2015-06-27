@@ -8,7 +8,7 @@ module Sluggable
 
   def generate_slug!
     a_slug = self[slug_column].parameterize
-    # binding.pry
+
     return if self.slug && self.slug[/\w+/]== a_slug
     slug_copies = self.class.where("slug LIKE :prefix",prefix: "#{a_slug}%").size
     if slug_copies.zero? || slug_copies == 1 && self.slug

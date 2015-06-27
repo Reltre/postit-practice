@@ -1,5 +1,5 @@
 class Category < ActiveRecord::Base
-  include Sluggable
+  include SluggableJun
 
   has_many :post_categories
   has_many :posts, through: :post_categories
@@ -7,5 +7,5 @@ class Category < ActiveRecord::Base
   validates :name, presence: true, length: {minimum: 2}, uniqueness: true
 
   sluggable_column :name
-  
+
 end

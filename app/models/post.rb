@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   include Voteable
-  include Sluggable
+  include SluggableJun
 
   belongs_to :creator, foreign_key: 'user_id', class_name: 'User'
 
@@ -16,6 +16,6 @@ class Post < ActiveRecord::Base
   validates :category_ids,
    :presence => {:message => 'At least 1 category must be selected'}
 
-  sluggable_column :title 
+  sluggable_column :title
 
 end
