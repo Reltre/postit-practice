@@ -1,21 +1,21 @@
 <ul class="nav">
-  <li><%= link_to "Postit!", root_path, class: 'brand' %></li>  
+  <li><%= link_to "Postit!", root_path, class: 'brand' %></li>
   <li>
     <div class='nav-item btn-group norm-nav' id="category">
-      <a class="btn dropdown-toggle" data-toggle='dropdown'> 
+      <a class="btn dropdown-toggle" data-toggle='dropdown'>
         Categories
-        <i class='caret'></i> 
+        <i class='caret'></i>
       </a>
       <ul class='dropdown-menu'>
-        <% Category.all.each do |category| %> 
+        <% Category.all.each do |category| %>
           <li><%= link_to category.name, category_path(category) %></li>
         <% end %>
-        <% if logged_in? %>
+        <% if logged_in? && current_user.is_admin? %>
           <li class='divider'></li>
           <li>
             <%= link_to new_category_path do %>
-              <i class='icon-plus'> </i> 
-              New Category 
+              <i class='icon-plus'> </i>
+              New Category
             <% end %>
           </li>
         <% end %>
@@ -70,6 +70,3 @@
     </li>
   <% end %>
 </ul>
-
-
-

@@ -26,4 +26,14 @@ class ApplicationController < ActionController::Base
   def log_in_user(user)
     session[:user_id] = user.id
   end
+
+  def require_admin
+    access_denied unless logged_in? and current_user.is_admin?
+  end
+
+  def access_denied
+    flash[:error] = "You are not authorized to do that."
+    redirect_to root_path
+  end
+
 end
