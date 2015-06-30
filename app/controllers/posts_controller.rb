@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   before_action :obtain_post, only: [:show, :edit, :update, :vote]
   before_action :require_user, except: [:show, :index]
-  before_action :require_same_user, only: [:edit, :update]
+  before_action :require_creator, only: [:edit, :update]
+
 
 
   def index
@@ -54,10 +55,9 @@ class PostsController < ApplicationController
 
   private
 
-  def require_same_user
-    if current_user != @post.creator
-      flash[:error] = "You do not have authorization to do that."
-      redirect_to :back
+  def require_creator
+    unless logged_in? and (current_user == @post.creator || current_user.is_admin?)
+      access_denied
     end
   end
 

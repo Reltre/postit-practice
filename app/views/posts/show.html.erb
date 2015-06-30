@@ -1,4 +1,4 @@
-<% if logged_in? && is_same_user?(@post) %>
+<% if logged_in? && (current_user.is_admin? || is_same_user?(@post)) %>
   <p class='pull-right'>
     [<%= link_to 'Edit this post', edit_post_path(@post) %>]
   </p>

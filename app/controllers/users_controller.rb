@@ -40,7 +40,8 @@ class UsersController < ApplicationController
   end
 
   def obtain_user
-    @user = User.find_by_slug(params[:id])
+    @user =
+      id_is_a_slug? ? User.find_by_slug(params[:id]) : User.find(params[:id])
   end
 
   def user_params

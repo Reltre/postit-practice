@@ -36,4 +36,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  def id_is_a_slug?
+    params[:id].to_i.zero?
+  end
 end
