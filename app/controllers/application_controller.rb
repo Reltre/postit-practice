@@ -35,8 +35,4 @@ class ApplicationController < ActionController::Base
     flash[:error] = "You are not authorized to do that."
     redirect_to root_path
   end
-
-  def id_is_a_slug?
-    params[:id].to_i.zero?
-  end
 end
