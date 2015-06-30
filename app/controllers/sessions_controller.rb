@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])  
+    if user && user.authenticate(params[:password])
       log_in_user(user)
       flash[:notice] = "Welcome #{user.username}"
       redirect_to root_path
