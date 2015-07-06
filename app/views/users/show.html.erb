@@ -1,17 +1,19 @@
 <%= render 'shared/content_title', title: "Profile: #{@user.username}" %>
 <div class="well">
-  <div class="dl-horizontal">
+  <dl class="dl-horizontal">
     <dt>Username:</dt>
-    <dd><%= @user.username %></dt> 
-  </div>
-</div>  
+    <dd><%= @user.username %></dt>
+    <dt>Time Zone:</dt>
+    <dd><%= @user.time_zone %></dt>
+  </dl>
+</div>
 <h5 id="user_activity_title"><%= @user.username %>'s Activity</h5>
 <ul class="nav nav-tabs">
-  <li class="active"> 
+  <li class="active">
     <%= link_to "Posts (#{@user.posts.size})", "#posts", 'data-toggle' => 'tab'  %>
   </li>
   <li>
-    <%= link_to "Comments (#{@user.comments.size})", "#comments", 'data-toggle' => 'tab' %> 
+    <%= link_to "Comments (#{@user.comments.size})", "#comments", 'data-toggle' => 'tab' %>
   </li>
 </ul>
 <br>
