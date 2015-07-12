@@ -14,10 +14,6 @@ PostitTemplate::Application.routes.draw do
   get '/pin', to: 'sessions#pin'
   post '/pin', to: 'sessions#pin'
 
-
-  get "/users/:name", to: 'users#explode'
-
-
   resources 'users', only: [:create, :show, :edit, :update]
   resources 'categories', only: [:new, :create, :show]
 end

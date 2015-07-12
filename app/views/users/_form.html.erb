@@ -1,3 +1,9 @@
+<% @phone_number_information =
+"You may enter your phone number to enable an extra level of security during login,
+by including a phone number with your account, you will be sent a pin number that will
+be needed for login.  You will need to enter this in addition to your username and password. This
+pin will be sent to you via sms to your phone."
+%>
 <div class="row">
   <div class='well span6'>
    <%= form_for @user do |f| %>
@@ -6,12 +12,17 @@
        <%= f.text_field :username %>
      </div>
      <div class="control-group">
-       <%= f.label :password %>
+       <%= f.label :pasword %>
        <%= f.password_field :password %>
      </div>
      <div class="control-group">
        <%= f.label :time_zone %>
        <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, default: Time.zone.name %>
+     </div>
+     <div class="control-group">
+       <%= f.label :phone_number %>
+       <%= f.telephone_field :phone %>
+       <i class="icon-question-sign" title= "<%= @phone_number_information %>" ></i>
      </div>
      <%=
       f.submit ( @user.new_record? ? 'Register' : 'Update Profile' ),

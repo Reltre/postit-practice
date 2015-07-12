@@ -23,8 +23,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def log_in_user(user)
-    session[:user_id] = user.id
+  def log_in_user(user, msg)
+    flash[:notice] = msg
+    session[:user_id] ||= user.id
+    redirect_to root_path
   end
 
   def require_admin

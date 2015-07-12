@@ -16,4 +16,16 @@ class User < ActiveRecord::Base
   def is_admin?
     self.role == "admin"
   end
+
+  def using_two_auth?
+    !self.phone.blank?
+  end
+
+  def generate_pin!
+    self.update_column(:pin, rand(10**6))
+  end
+
+  def remove_pin!
+    self.update_column(:pin, nil)
+  end
 end

@@ -1,0 +1,8 @@
+<%= render 'shared/content_title', title: 'Log in' %>
+<%= form_tag pin_path do %>
+  <div class="control-group">
+    <%= label_tag(:pin, 'Pin') %>
+    <%= text_field_tag :pin %>
+  </div>
+  <%= submit_tag 'Confirm Pin', class: 'btn btn-success' %>
+<% end %>

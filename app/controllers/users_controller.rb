@@ -6,16 +6,10 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def explode
-    binding.pry
-  end
-
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:notice] = "You're now registered."
-      log_in_user(@user)
-      redirect_to :root
+      log_in_user(@user, "You're now registered.")
     else
       render :new
     end
@@ -26,6 +20,7 @@ class UsersController < ApplicationController
   def show; end
 
   def update
+    binding.pry
     if @user.update(user_params)
       flash[:notice] = "Your profile has been updated."
       redirect_to root_path
@@ -48,6 +43,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :time_zone)
+    params.require(:user).permit(:username, :password, :time_zone, :phone)
   end
 end
