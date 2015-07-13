@@ -3,7 +3,7 @@
   <%= render @posts %>
 </div>
 <% @pages.times do |page| %>
-  <%= link_to "#{page + 1}",next_page_path(offset: page + 1), remote: true, method: 'post' %>
+  <%= link_to "#{page + 1}",posts_path(offset: page + 1), remote: true, method: 'get' %>
   <% break if page == @pages - 1 %>
     |
 <% end %>
