@@ -7,6 +7,8 @@ PostitTemplate::Application.routes.draw do
       post 'vote', on:  :member
     end
   end
+  post '/next_page', to: 'posts#index'
+
   get '/register', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'

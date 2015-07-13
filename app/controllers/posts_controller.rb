@@ -6,7 +6,16 @@ class PostsController < ApplicationController
 
 
   def index
-    @posts = Post.all.sort_by {|post| post.total_votes}.reverse
+    offset = params[:offset] ? params[:offset] : 0
+    number_of_posts = Post.all.size
+    @posts = Post.limit(Post::PER_PAGE ).offset(Post::PER_PAGE * (offset.to_i - 1))
+    @pages = number_of_posts / Post::PER_PAGE
+    @pages += 1 if number_of_posts.odd?
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show

@@ -1,2 +1,9 @@
 <%= render 'shared/content_title', title: "Posts" %>
-<%= render @posts %>
+<div id="posts_page">
+  <%= render @posts %>
+</div>
+<% @pages.times do |page| %>
+  <%= link_to "#{page + 1}",next_page_path(offset: page + 1), remote: true, method: 'post' %>
+  <% break if page == @pages - 1 %>
+    |
+<% end %>
