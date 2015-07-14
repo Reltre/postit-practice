@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.js {expires_now}
+      format.js { expires_now if Rails.env.development? || Rails.env.test? }
     end
   end
 
