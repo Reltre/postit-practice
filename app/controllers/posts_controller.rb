@@ -6,9 +6,9 @@ class PostsController < ApplicationController
 
 
   def index
-    offset = params[:offset] ? params[:offset] : 0
+    displace = params[:offset]  ? params[:offset] : "1"
     number_of_posts = Post.all.size
-    @posts = Post.limit(Post::PER_PAGE ).offset(Post::PER_PAGE * (offset.to_i - 1))
+    @posts = Post.limit(Post::PER_PAGE ).offset(Post::PER_PAGE * (displace.to_i - 1))
     @pages = number_of_posts / Post::PER_PAGE
     @pages += 1 if number_of_posts.odd?
 
