@@ -19,5 +19,4 @@ class Post < ActiveRecord::Base
   sluggable_column :title
 
   default_scope {order('created_at ASC')}
-
 end
