@@ -6,7 +6,7 @@
 
       <div class="control-group pull-right">
         <%= f.label :categories %>
-        <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) %>
+        <%= f.collection_check_boxes(:category_ids, @categories, :id, :name) %>
       </div>
       <div class="control-group">
         <%= f.label :title %>
@@ -21,9 +21,9 @@
         <%= f.text_area :description, rows: 5 %>
       </div>
       <br>
-      <%= 
+      <%=
         f.submit "#{@post.new_record? ? 'Create' : 'Update'} Post",
-        class: 'btn btn-success' 
+        class: 'btn btn-success'
       %>
     <% end %>
   </div>
